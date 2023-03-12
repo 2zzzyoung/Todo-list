@@ -1,45 +1,32 @@
 import React, { useState } from "react";
 import AddTodo from "../AddTodo/AddTodo";
 import Todo from "../Todo/Todo";
+import FilterTodo from "../FilterTodo/FilterTodo";
 
 export default function TodoList() {
-  const [todos, SetTodos] = useState([
-    {
-      id: "123",
-      text: "shopping",
-      status: "active",
-    },
-    {
-      id: "124",
-      text: "study",
-      status: "active",
-    },
+  const [todos, setTodos] = useState([
+    { id: "123", text: "shopping", status: "active" },
+    { id: "124", text: "study", status: "active" },
   ]);
-
-  const handleAdd = (todo) => {
-    SetTodos([...todos, todo]);
-  };
-  const handleUpdate = (updated) => {
-    SetTodos(todos.map((t) => (t.id === updated.id ? updated : t)));
-  };
+  const handleAdd = (todo) => setTodos([...todos, todo]);
+  const handleUpdate = (updated) =>
+    setTodos(todos.map((t) => (t.id === updated.id ? updated : t)));
   const handleDelete = (deleted) =>
-    SetTodos(todos.filter((t) => t.id !== deleted.id));
-
+    setTodos(todos.filter((t) => t.id !== deleted.id));
   return (
-    <>
-      <section>
-        <ul>
-          {todos.map((item) => (
-            <Todo
-              key={item.id}
-              todo={item}
-              onUpdate={handleUpdate}
-              onDelete={handleDelete}
-            />
-          ))}
-        </ul>
-      </section>
+    <section>
+      <FilterTodo />
+      <ul>
+        {todos.map((item) => (
+          <Todo
+            key={item.id}
+            todo={item}
+            onUpdate={handleUpdate}
+            onDelete={handleDelete}
+          />
+        ))}
+      </ul>
       <AddTodo onAdd={handleAdd} />
-    </>
+    </section>
   );
 }

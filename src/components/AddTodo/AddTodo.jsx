@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export default function AddTodo({ onAdd }) {
@@ -22,7 +21,7 @@ export default function AddTodo({ onAdd }) {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        text="text"
+        type="text"
         placeholder="Add Todo"
         value={text}
         onChange={handleChange}
