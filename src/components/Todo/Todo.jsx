@@ -4,7 +4,7 @@ import { BsTrash } from "react-icons/bs";
 export default function Todo({ todo, onUpdate, onDelete }) {
   const { text, status } = todo;
   const handleChange = (e) => {
-    const status = e.target.checked ? "complete" : "active";
+    const status = e.target.checked ? "completed" : "active";
     onUpdate({ ...todo, status });
   };
   const handleDelete = () => onDelete(todo);
@@ -13,7 +13,7 @@ export default function Todo({ todo, onUpdate, onDelete }) {
       <input
         type="checkbox"
         id="checkbox"
-        checked={status === "complete"}
+        checked={status === "completed"}
         onChange={handleChange}
       />
       <label htmlFor="checkbox">{text}</label>
